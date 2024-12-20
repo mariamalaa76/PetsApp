@@ -4,7 +4,7 @@ Widget TextFormFieldComponent(
         {required TextEditingController controller,
           bool? obscureText,
         required String text,
-        required Widget prefixIcon,
+          Widget? prefixIcon,
         Widget? suffixIcon,
         required TextInputType txtInputType,
         String? Function(String?)? validator}) =>

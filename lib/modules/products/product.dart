@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pets_app/shared/components/components.dart';
 class ProductScreen extends StatefulWidget {
   @override
   _ProductScreenState createState() => _ProductScreenState();
@@ -24,51 +25,43 @@ class _ProductScreenState extends State<ProductScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                TextField(
-                  controller: _nameController,
-                  decoration: InputDecoration(
-                    labelText: 'Product Name',
-                    border: OutlineInputBorder(),
-                  ),
+                TextFormFieldComponent(
+                    controller: _nameController,
+                    text: 'Product Name',
+                    txtInputType: TextInputType.text
                 ),
                 const SizedBox(height: 10),
-                TextField(
-                  controller: _priceController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Product Price',
-                    border: OutlineInputBorder(),
-                  ),
+                TextFormFieldComponent(
+                    controller: _priceController,
+                    text: 'Product Price',
+                    txtInputType: TextInputType.text
                 ),
                 const SizedBox(height: 10),
-                TextField(
-                  controller: _quantityController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Product Quantity',
-                    border: OutlineInputBorder(),
-                  ),
+                TextFormFieldComponent(
+                    controller: _quantityController,
+                    text: 'Product Quantity',
+                    txtInputType: TextInputType.text
                 ),
                 const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_nameController.text.isNotEmpty &&
-                        _priceController.text.isNotEmpty &&
-                        _quantityController.text.isNotEmpty) {
-                      setState(() {
-                        _products.add({
-                          'name': _nameController.text,
-                          'price': _priceController.text,
-                          'quantity': _quantityController.text,
+                ElevatedButtonComponent(
+                    function: (){
+                      if (_nameController.text.isNotEmpty &&
+                          _priceController.text.isNotEmpty &&
+                          _quantityController.text.isNotEmpty) {
+                        setState(() {
+                          _products.add({
+                            'name': _nameController.text,
+                            'price': _priceController.text,
+                            'quantity': _quantityController.text,
+                          });
                         });
-                      });
-                      _nameController.clear();
-                      _priceController.clear();
-                      _quantityController.clear();
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: const Text('Add Product'),
+                        _nameController.clear();
+                        _priceController.clear();
+                        _quantityController.clear();
+                        Navigator.pop(context);
+                      }
+                    },
+                    text: 'Add Product'
                 ),
               ],
             ),
