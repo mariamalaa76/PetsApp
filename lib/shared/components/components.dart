@@ -6,7 +6,7 @@ Widget TextFormFieldComponent(
         required String text,
           Widget? prefixIcon,
         Widget? suffixIcon,
-        required TextInputType txtInputType,
+          TextInputType? txtInputType,
         String? Function(String?)? validator}) =>
     TextFormField(
       controller: controller,
