@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Icon(
                     Icons.lock_outline,
                     size: 100,
-                    color: Colors.teal,
+                    color: Colors.black,
                   ),
                   const SizedBox(height: 16),
                   const Text(
@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: Colors.teal
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(height: 32),
@@ -78,6 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 24),
                   ElevatedButtonComponent(
+
                       function: () {
                         if (formKey.currentState!.validate()) {
                           Navigator.push(
@@ -85,8 +86,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             MaterialPageRoute(
                                 builder: (context) => HomeScreen()),
                           );
+
                         }
                       },
+
                       text: 'Login'),
                   const SizedBox(height: 16),
                   TextButtonComponent(

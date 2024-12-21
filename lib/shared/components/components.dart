@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 Widget TextFormFieldComponent(
         {required TextEditingController controller,
@@ -16,16 +17,17 @@ Widget TextFormFieldComponent(
         labelText: text,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: Colors.teal)
+          borderSide: BorderSide(color: Colors.black),
         ),
+
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.teal, width: 2.0),
+          borderSide: BorderSide(color: Colors.black, width: 2.0),
           borderRadius: BorderRadius.circular(15),
         ),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         filled: true,
-        fillColor: Colors.white,
+        fillColor:HexColor('#bf9a84'),
       ),
       keyboardType: txtInputType,
     );
@@ -34,15 +36,16 @@ Widget ElevatedButtonComponent(
         {required Function function, required String text}) =>
     ElevatedButton(
       style: ElevatedButton.styleFrom(
+        backgroundColor:HexColor('#bf9a84') ,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
       ),
       onPressed: () => function(),
       child: Text(
         text,
-        style: TextStyle(fontSize: 16,color: Colors.teal),
+        style: TextStyle(fontSize: 16,color: Colors.black),
       ),
     );
 
@@ -52,6 +55,6 @@ Widget TextButtonComponent(
       onPressed: () => function(),
       child: Text(
         text,
-        style: TextStyle(color: Colors.teal),
+        style: TextStyle(color: Colors.black),
       ),
     );
