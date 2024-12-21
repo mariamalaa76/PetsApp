@@ -8,8 +8,10 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Explore Categories',
-          style: TextStyle(color: Colors.white),),
+        title: const Text(
+          'Explore Categories',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.teal,
         iconTheme: IconThemeData(color: Colors.white),
       ),
@@ -29,10 +31,8 @@ class CategoriesScreen extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                    builder: (context) => AdoptPet()
-                    )
+                  context,
+                  MaterialPageRoute(builder: (context) => AdoptPet()),
                 );
               },
               child: CategoryCard(
@@ -45,10 +45,8 @@ class CategoriesScreen extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ProductScreen()
-                    )
+                  context,
+                  MaterialPageRoute(builder: (context) => ProductScreen()),
                 );
               },
               child: CategoryCard(
@@ -106,24 +104,6 @@ class CategoryCard extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class AdoptionScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Adopt a Pet'),
-        backgroundColor: Colors.orangeAccent,
-      ),
-      body: Center(
-        child: const Text(
-          'Here are the pets available for adoption!',
-          style: TextStyle(fontSize: 20, color: Colors.orangeAccent),
-        ),
       ),
     );
   }

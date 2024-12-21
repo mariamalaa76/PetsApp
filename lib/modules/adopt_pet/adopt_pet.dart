@@ -1,17 +1,20 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 import '../../shared/components/components.dart';
 
-class AdoptPet extends StatefulWidget{
+class AdoptPet extends StatefulWidget {
   @override
   State<AdoptPet> createState() => _AdoptPetState();
 }
+
 class _AdoptPetState extends State<AdoptPet> {
-  final List<Map<String, dynamic>> _products = [];
+  final List<Map<String, dynamic>> _pets = [];
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
   final TextEditingController _quantityController = TextEditingController();
+  File? _image;
 
   void _showAddProductSheet() {
     showModalBottomSheet(
@@ -35,7 +38,7 @@ class _AdoptPetState extends State<AdoptPet> {
                 const SizedBox(height: 10),
                 TextFormFieldComponent(
                     controller: _ageController,
-                    text: 'pet Age',
+                    text: 'Pet Age',
                     txtInputType: TextInputType.text
                 ),
                 const SizedBox(height: 10),
@@ -46,15 +49,24 @@ class _AdoptPetState extends State<AdoptPet> {
                 ),
                 const SizedBox(height: 10),
                 ElevatedButtonComponent(
-                    function: (){
+                    function: _pickImage,
+                    text: 'Select Product Image'
+                ),
+                _image != null
+                    ? Image.file(_image!)
+                    : const Text('No image selected'),
+                const SizedBox(height: 10),
+                ElevatedButtonComponent(
+                    function: () {
                       if (_nameController.text.isNotEmpty &&
                           _ageController.text.isNotEmpty &&
                           _quantityController.text.isNotEmpty) {
                         setState(() {
-                          _products.add({
+                          _pets.add({
                             'name': _nameController.text,
                             'age': _ageController.text,
                             'quantity': _quantityController.text,
+                            'image': _image,
                           });
                         });
                         _nameController.clear();
@@ -63,7 +75,7 @@ class _AdoptPetState extends State<AdoptPet> {
                         Navigator.pop(context);
                       }
                     },
-                    text: 'Add Product'
+                    text: 'Add Pets'
                 ),
               ],
             ),
@@ -72,22 +84,41 @@ class _AdoptPetState extends State<AdoptPet> {
       ),
     );
   }
+
+  Future<void> _pickImage() async {
+    try {
+      final ImagePicker _picker = ImagePicker();
+      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+      if (image != null) {
+        setState(() {
+          _image = File(image.path);
+        });
+      } else {
+        print("No image selected");
+      }
+    } catch (e) {
+      print("Error picking image: $e");
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Adopt a Pet'),
+        title: const Text('Adopt a Pet', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.teal,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: _products.isEmpty
+      body: _pets.isEmpty
           ? const Center(
-        child: Text('No Pets added yet!',
-            style: TextStyle(fontSize: 18)),
+        child: Text('No Pets added yet!', style: TextStyle(fontSize: 18)),
       )
           : ListView.builder(
-        itemCount: _products.length,
+        itemCount: _pets.length,
         itemBuilder: (context, index) {
-          final product = _products[index];
+          final product = _pets[index];
           return Card(
             margin: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -96,6 +127,9 @@ class _AdoptPetState extends State<AdoptPet> {
                 'Price: ${product['price']} \nQuantity: ${product['quantity']}',
               ),
               isThreeLine: true,
+              leading: product['image'] != null
+                  ? Image.file(product['image'])
+                  : null,
             ),
           );
         },
