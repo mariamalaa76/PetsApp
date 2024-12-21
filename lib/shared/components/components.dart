@@ -42,7 +42,9 @@ Widget ElevatedButtonComponent(
       onPressed: () => function(),
       child: Text(
         text,
-        style: TextStyle(fontSize: 16,color: Colors.teal),
+        style: TextStyle(fontSize: 16,
+          color: Colors.black,
+),
       ),
     );
 
@@ -52,6 +54,8 @@ Widget TextButtonComponent(
       onPressed: () => function(),
       child: Text(
         text,
-        style: TextStyle(color: Colors.teal),
+        style: TextStyle(
+          color: Colors.black,
+        ),
       ),
     );

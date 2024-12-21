@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Icon(
                     Icons.lock_outline,
                     size: 100,
-                    color: Colors.teal,
+                    color: Colors.black,
                   ),
                   const SizedBox(height: 16),
                   const Text(
@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: Colors.teal
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(height: 32),

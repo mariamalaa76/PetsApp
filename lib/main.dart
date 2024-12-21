@@ -17,7 +17,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home:LoginScreen(),
       theme: ThemeData(
-        scaffoldBackgroundColor: HexColor('#E8C0A0')
+        scaffoldBackgroundColor: HexColor('#F0D0B8'),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: HexColor('#F0D0B8'),
+          selectedItemColor: HexColor('#670b0b'),
+        )
       ),
     );
   }
