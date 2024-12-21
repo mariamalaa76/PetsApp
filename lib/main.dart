@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'layout/home_layout/home.dart';
 import 'modules/category/category.dart';
 import 'modules/login/login.dart';
@@ -14,7 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:LoginScreen()
+      home:LoginScreen(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: HexColor('#E8C0A0')
+      ),
     );
   }
 }
