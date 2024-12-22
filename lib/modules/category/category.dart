@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:pets_app/modules/adopt_pet/adopt_pet.dart';
 import 'package:pets_app/modules/products/product.dart';
 
@@ -10,10 +11,10 @@ class CategoriesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Explore Categories',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Colors.teal,
-        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: HexColor('#F0D0B8'),
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       body: Center(
         child: Column(
@@ -23,8 +24,8 @@ class CategoriesScreen extends StatelessWidget {
               'What are you looking for?',
               style: TextStyle(
                 fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.teal,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
               ),
             ),
             const SizedBox(height: 20),
@@ -39,6 +40,7 @@ class CategoriesScreen extends StatelessWidget {
                 title: 'Adopt a Pet',
                 icon: Icons.pets,
                 color: Colors.orangeAccent,
+                texcolor: Colors.black87,
               ),
             ),
             const SizedBox(height: 20),
@@ -53,6 +55,7 @@ class CategoriesScreen extends StatelessWidget {
                 title: 'Shop Products',
                 icon: Icons.shopping_bag,
                 color: Colors.lightBlueAccent,
+                texcolor: Colors.black87,
               ),
             ),
           ],
@@ -66,12 +69,14 @@ class CategoryCard extends StatelessWidget {
   final String title;
   final IconData icon;
   final Color color;
+  final Color texcolor;
 
   const CategoryCard({
     Key? key,
     required this.title,
     required this.icon,
     required this.color,
+    required this.texcolor,
   }) : super(key: key);
 
   @override
@@ -93,14 +98,15 @@ class CategoryCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 50, color: Colors.white),
+          Icon(icon, size: 50, color: Colors.black87,
+          ),
           const SizedBox(width: 10),
           Text(
             title,
-            style: const TextStyle(
+            style:  TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: texcolor,
             ),
           ),
         ],

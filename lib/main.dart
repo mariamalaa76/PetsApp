@@ -17,6 +17,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home:LoginScreen(),
       theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          color: HexColor('#F0D0B8'),
+        ),
         scaffoldBackgroundColor: HexColor('#F0D0B8'),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: HexColor('#F0D0B8'),

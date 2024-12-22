@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -107,9 +108,9 @@ class _AdoptPetState extends State<AdoptPet> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Adopt a Pet', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.teal,
-        iconTheme: const IconThemeData(color: Colors.white),
+       title:  Text('Adopt a Pet', style: TextStyle(color: Colors.black)),
+        backgroundColor: HexColor('#F0D0B8'),
+        iconTheme:  IconThemeData(color: Colors.black),
       ),
       body: _pets.isEmpty
           ? const Center(
@@ -136,8 +137,8 @@ class _AdoptPetState extends State<AdoptPet> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _showAddProductSheet,
-        backgroundColor: Colors.teal,
-        child: const Icon(Icons.add),
+        backgroundColor: HexColor('#670b0b'),
+        child: const Icon(Icons.add,color: Colors.white,),
       ),
     );
   }
