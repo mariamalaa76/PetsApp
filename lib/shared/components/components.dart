@@ -17,8 +17,9 @@ Widget TextFormFieldComponent(
         labelText: text,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: Colors.black)
+          borderSide: BorderSide(color: Colors.black),
         ),
+
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.black, width: 2.0),
           borderRadius: BorderRadius.circular(15),
@@ -26,9 +27,8 @@ Widget TextFormFieldComponent(
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         filled: true,
-        fillColor : HexColor('#e4cfc3'),
-         //hello
-    ),
+        fillColor:HexColor('#bf9a84'),
+      ),
       keyboardType: txtInputType,
     );
 
@@ -36,19 +36,16 @@ Widget ElevatedButtonComponent(
         {required Function function, required String text}) =>
     ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: HexColor('#e4cfc3'),
+        backgroundColor:HexColor('#bf9a84') ,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
       ),
       onPressed: () => function(),
       child: Text(
         text,
-        style: TextStyle(
-          fontSize: 16,
-          color: Colors.black,
-),
+        style: TextStyle(fontSize: 16,color: Colors.black),
       ),
     );
 
@@ -58,8 +55,6 @@ Widget TextButtonComponent(
       onPressed: () => function(),
       child: Text(
         text,
-        style: TextStyle(
-          color: Colors.black,
-        ),
+        style: TextStyle(color: Colors.black),
       ),
     );

@@ -78,6 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 24),
                   ElevatedButtonComponent(
+
                       function: () {
                         if (formKey.currentState!.validate()) {
                           Navigator.push(
@@ -85,8 +86,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             MaterialPageRoute(
                                 builder: (context) => HomeScreen()),
                           );
+
                         }
                       },
+
                       text: 'Login'),
                   const SizedBox(height: 16),
                   TextButtonComponent(

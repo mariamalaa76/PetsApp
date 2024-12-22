@@ -17,12 +17,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home:LoginScreen(),
       theme: ThemeData(
+        scaffoldBackgroundColor: HexColor('#E8C0A0'),
         appBarTheme: AppBarTheme(
-          color: HexColor('#F0D0B8'),
+          color: HexColor('#E8C0A0'),
         ),
-        scaffoldBackgroundColor: HexColor('#F0D0B8'),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: HexColor('#F0D0B8'),
+          backgroundColor: HexColor('#E8C0A0'),
+          elevation: 0,
           selectedItemColor: HexColor('#670b0b'),
         )
       ),

@@ -9,12 +9,17 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Explore Categories',
-          style: TextStyle(color: Colors.black),
+        iconTheme: IconThemeData(
+          color: Colors.black,
+
         ),
-        backgroundColor: HexColor('#F0D0B8'),
-        iconTheme: IconThemeData(color: Colors.black),
+        title: Text(
+          'Explore Categories',
+          style: TextStyle(
+              color: Colors.black,
+               fontWeight: FontWeight.w600),
+        ),
+        backgroundColor: HexColor('#E8C0A0'),
       ),
       body: Center(
         child: Column(
@@ -24,7 +29,7 @@ class CategoriesScreen extends StatelessWidget {
               'What are you looking for?',
               style: TextStyle(
                 fontSize: 24,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
             ),
@@ -33,14 +38,16 @@ class CategoriesScreen extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
+
                   MaterialPageRoute(builder: (context) => AdoptPet()),
+
                 );
               },
               child: CategoryCard(
                 title: 'Adopt a Pet',
                 icon: Icons.pets,
                 color: Colors.orangeAccent,
-                texcolor: Colors.black87,
+                texColor: Colors.black,
               ),
             ),
             const SizedBox(height: 20),
@@ -55,7 +62,7 @@ class CategoriesScreen extends StatelessWidget {
                 title: 'Shop Products',
                 icon: Icons.shopping_bag,
                 color: Colors.lightBlueAccent,
-                texcolor: Colors.black87,
+                texColor: Colors.black,
               ),
             ),
           ],
@@ -69,14 +76,14 @@ class CategoryCard extends StatelessWidget {
   final String title;
   final IconData icon;
   final Color color;
-  final Color texcolor;
+  final Color texColor;
 
   const CategoryCard({
     Key? key,
     required this.title,
     required this.icon,
     required this.color,
-    required this.texcolor,
+    required this.texColor
   }) : super(key: key);
 
   @override
@@ -98,15 +105,14 @@ class CategoryCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 50, color: Colors.black87,
-          ),
+          Icon(icon, size: 50, color: Colors.black),
           const SizedBox(width: 10),
           Text(
             title,
-            style:  TextStyle(
+            style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: texcolor,
+              color: texColor,
             ),
           ),
         ],
