@@ -16,11 +16,9 @@ class _AdoptPetState extends State<AdoptPet> {
   final TextEditingController _quantityController = TextEditingController();
   File? _image;
 
-  final List<Map<String, dynamic>> _products = [];
   final List<Map<String, dynamic>> _pets = [];
-  final TextEditingController _priceController = TextEditingController();
-  void _showAddProductSheet()
-  {
+
+  void _showAddProductSheet() {
     showModalBottomSheet(
       backgroundColor: HexColor('#F0D0B8'),
       context: context,
@@ -55,7 +53,7 @@ class _AdoptPetState extends State<AdoptPet> {
                 const SizedBox(height: 10),
                 ElevatedButtonComponent(
                     function: _pickImage,
-                    text: 'Select Product Image'
+                    text: 'Select Pet Image'
                 ),
                 _image != null
                     ? Image.file(_image!)
@@ -69,8 +67,6 @@ class _AdoptPetState extends State<AdoptPet> {
                         setState(() {
                           _pets.add({
                             'name': _nameController.text,
-                            'age': _ageController.text,
-                            'quantity': _quantityController.text,
                             'image': _image,
                           });
                         });
@@ -80,7 +76,7 @@ class _AdoptPetState extends State<AdoptPet> {
                         Navigator.pop(context);
                       }
                     },
-                    text: 'Add Pets'
+                    text: 'Add Pet'
                 ),
               ],
             ),
@@ -107,8 +103,6 @@ class _AdoptPetState extends State<AdoptPet> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,43 +116,84 @@ class _AdoptPetState extends State<AdoptPet> {
         backgroundColor: HexColor('#F0D0B8'),
         iconTheme: IconThemeData(color: Colors.black),
       ),
-      body: _products.isEmpty
+      body: _pets.isEmpty
           ? const Center(
-        child: Text('No products added yet!',
+        child: Text('No pets added yet!',
             style: TextStyle(fontSize: 18)),
       )
-          : ListView.builder(
-        itemCount: _products.length,
-        itemBuilder: (context, index) {
-          final product = _products[index];
-          return Card(
-            margin: const EdgeInsets.all(8.0),
-            child: ListTile(
-              title: Text(product['name']),
-              subtitle: Text(
-                'Price: ${product['price']} \nQuantity: ${product['quantity']}',
-              ),
-              isThreeLine: true,
-            ),
-          );
-        },
+          : Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GridView.builder(
+          physics: BouncingScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10.0,
+            childAspectRatio: 0.7,
+          ),
+          itemBuilder: (context, index) => PetItem(
+            path: _pets[index]['image']?.path ?? '',
+            name: _pets[index]['name']!,
+          ),
+          itemCount: _pets.length,
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _showAddProductSheet,
-        backgroundColor: Colors.teal,
-        child: const Icon(Icons.add),
+        backgroundColor: HexColor('#F0D0B8'),
+        child: const Icon(Icons.add,color: Colors.black,),
       ),
     );
-
-    /*
-      floatingActionButton: FloatingActionButton(
-        onPressed: _showAddProductSheet,
-        backgroundColor: HexColor('#670b0b'),
-        child: Icon(
-          Icons.add,
-          color: HexColor('#F0D0B8'),),
-      ),
-      */
-
   }
 }
+
+Widget PetItem({
+  required String path,
+  required String name,
+}) =>
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          height: 150.0,
+          width: 150.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                offset: Offset(0, 4),
+                blurRadius: 6.0,
+              ),
+            ],
+            border: Border.all(
+              color: HexColor('#F0D0B8'),
+              width: 2.0,
+            ),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15.0),
+            child: path.isNotEmpty
+                ? Image.file(
+              File(path),
+              fit: BoxFit.cover,
+            )
+                : const Icon(
+              Icons.image,
+              size: 50.0,
+              color: Colors.grey,
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          name,
+          style: TextStyle(
+            fontSize: 14.0,
+            fontWeight: FontWeight.w600,
+            overflow: TextOverflow.ellipsis,
+          ),
+          maxLines: 1,
+        ),
+      ],
+    );
