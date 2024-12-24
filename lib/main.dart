@@ -3,9 +3,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'layout/home_layout/home.dart';
 import 'modules/category/category.dart';
 import 'modules/login/login.dart';
-import 'modules/register/register.dart';
 
-void main() {
+ void main() {
   runApp(const MyApp());
 }
 //mostafa
