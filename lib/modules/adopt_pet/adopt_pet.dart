@@ -11,14 +11,18 @@ class AdoptPet extends StatefulWidget {
 }
 
 class _AdoptPetState extends State<AdoptPet> {
-  final List<Map<String, dynamic>> _pets = [];
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
   final TextEditingController _quantityController = TextEditingController();
   File? _image;
 
-  void _showAddProductSheet() {
+  final List<Map<String, dynamic>> _products = [];
+  final List<Map<String, dynamic>> _pets = [];
+  final TextEditingController _priceController = TextEditingController();
+  void _showAddProductSheet()
+  {
     showModalBottomSheet(
+      backgroundColor: HexColor('#F0D0B8'),
       context: context,
       isScrollControlled: true,
       builder: (context) => Padding(
@@ -104,22 +108,29 @@ class _AdoptPetState extends State<AdoptPet> {
   }
 
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       title:  Text('Adopt a Pet', style: TextStyle(color: Colors.black)),
+        title: Text(
+          'Adopt a Pet',
+          style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w500),
+        ),
         backgroundColor: HexColor('#F0D0B8'),
-        iconTheme:  IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: Colors.black),
       ),
-      body: _pets.isEmpty
+      body: _products.isEmpty
           ? const Center(
-        child: Text('No Pets added yet!', style: TextStyle(fontSize: 18)),
+        child: Text('No products added yet!',
+            style: TextStyle(fontSize: 18)),
       )
           : ListView.builder(
-        itemCount: _pets.length,
+        itemCount: _products.length,
         itemBuilder: (context, index) {
-          final product = _pets[index];
+          final product = _products[index];
           return Card(
             margin: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -128,18 +139,26 @@ class _AdoptPetState extends State<AdoptPet> {
                 'Price: ${product['price']} \nQuantity: ${product['quantity']}',
               ),
               isThreeLine: true,
-              leading: product['image'] != null
-                  ? Image.file(product['image'])
-                  : null,
             ),
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _showAddProductSheet,
-        backgroundColor: HexColor('#670b0b'),
-        child: const Icon(Icons.add,color: Colors.white,),
+        backgroundColor: Colors.teal,
+        child: const Icon(Icons.add),
       ),
     );
+
+    /*
+      floatingActionButton: FloatingActionButton(
+        onPressed: _showAddProductSheet,
+        backgroundColor: HexColor('#670b0b'),
+        child: Icon(
+          Icons.add,
+          color: HexColor('#F0D0B8'),),
+      ),
+      */
+
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'layout/home_layout/home.dart';
+import 'modules/adopt_pet/adopt_pet.dart';
 import 'modules/category/category.dart';
 import 'modules/login/login.dart';
 
@@ -9,8 +10,13 @@ import 'modules/login/login.dart';
 }
 //mostafa
 class MyApp extends StatelessWidget {
+
+
+
   const MyApp({super.key});
   @override
+
+
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
