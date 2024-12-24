@@ -1,28 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pets_app/modules/login/login.dart';
-
+import '../../layout/cubit/cubit.dart';
 import '../../shared/components/components.dart';
 
-class RegisterScreen extends StatefulWidget {
-  @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
-  final TextEditingController addressController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-
-  bool _isPasswordVisible = false;
-  bool _isConfirmPasswordVisible = false;
-  var formKey = GlobalKey<FormState>();
-
+class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final TextEditingController firstNameController = TextEditingController();
+    final TextEditingController secondNameController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+    final TextEditingController confirmPasswordController =
+        TextEditingController();
+    final TextEditingController addressController = TextEditingController();
+    final TextEditingController phoneController = TextEditingController();
+
+    var formKey = GlobalKey<FormState>();
     return Scaffold(
       body: Form(
         key: formKey,
@@ -49,6 +43,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   TextFormFieldComponent(
                       validator: (value) {
                         if (value!.isEmpty) {
+                          return 'Enter Your First Name';
+                        }
+                      },
+                      controller: firstNameController,
+                      text: 'First Name',
+                      prefixIcon: const Icon(Icons.account_circle_rounded),
+                      txtInputType: TextInputType.text),
+                  const SizedBox(height: 16),
+                  TextFormFieldComponent(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Enter Your Second Name';
+                        }
+                      },
+                      controller: secondNameController,
+                      text: 'Second Name',
+                      prefixIcon: const Icon(Icons.account_circle_rounded),
+                      txtInputType: TextInputType.text),
+                  const SizedBox(height: 16),
+                  TextFormFieldComponent(
+                      validator: (value) {
+                        if (value!.isEmpty) {
                           return 'Enter Your Email Address';
                         }
                       },
@@ -58,49 +74,50 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       txtInputType: TextInputType.emailAddress),
                   const SizedBox(height: 16),
                   TextFormFieldComponent(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Enter Your Password';
-                        }
-                      },
-                      controller: passwordController,
-                      obscureText: !_isPasswordVisible,
-                      text: 'Password',
-                      prefixIcon: const Icon(Icons.lock),
-                      txtInputType: TextInputType.visiblePassword,
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _isPasswordVisible = !_isPasswordVisible;
-                          });
-                        },
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Enter Your Password';
+                      }
+                    },
+                    controller: passwordController,
+                    obscureText: !DataCubit.get(context).isPasswordVisible,
+                    text: 'Password',
+                    prefixIcon: const Icon(Icons.lock),
+                    txtInputType: TextInputType.visiblePassword,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        DataCubit.get(context).isPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                       ),
+                      onPressed: () {
+                        DataCubit.get(context).changePasswordVisible();
+                      },
+                    ),
                   ),
                   const SizedBox(height: 16),
                   TextFormFieldComponent(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Enter Your Password';
-                        }
-                      },
-                      controller: confirmPasswordController,
-                      obscureText: !_isConfirmPasswordVisible,
-                      text: 'Confirm Password',
-                      prefixIcon: const Icon(Icons.lock),
-                      txtInputType: TextInputType.visiblePassword,
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _isConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
-                          });
-                        },
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Enter Your Password';
+                      }
+                    },
+                    controller: confirmPasswordController,
+                    obscureText:
+                        !DataCubit.get(context).isConfirmPasswordVisible,
+                    text: 'Confirm Password',
+                    prefixIcon: const Icon(Icons.lock),
+                    txtInputType: TextInputType.visiblePassword,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        DataCubit.get(context).isConfirmPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                       ),
+                      onPressed: () {
+                        DataCubit.get(context).changeConfirmPasswordVisible();
+                      },
+                    ),
                   ),
                   const SizedBox(height: 16),
                   TextFormFieldComponent(
@@ -138,6 +155,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           );
                         } else if (formKey.currentState!.validate()) {
+                          DataCubit.get(context)
+                              .updateName(firstNameController.text);
+                          DataCubit.get(context)
+                              .updateEmail(emailController.text);
+                          DataCubit.get(context)
+                              .updateAddress(addressController.text);
+                          DataCubit.get(context)
+                              .updatePhone(phoneController.text);
                           Navigator.push(
                             context,
                             MaterialPageRoute(

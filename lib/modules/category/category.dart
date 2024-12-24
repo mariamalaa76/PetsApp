@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:pets_app/modules/adopt_pet/adopt_pet.dart';
 import 'package:pets_app/modules/products/product.dart';
 
@@ -10,10 +11,8 @@ class CategoriesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Explore Categories',
-          style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.teal,
-        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: HexColor('#F0D0B8'),
       ),
       body: Center(
         child: Column(
@@ -24,7 +23,7 @@ class CategoriesScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.teal,
+                color: Colors.black,
               ),
             ),
             const SizedBox(height: 20),
@@ -93,14 +92,14 @@ class CategoryCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 50, color: Colors.white),
+          Icon(icon, size: 50, color: Colors.black),
           const SizedBox(width: 10),
           Text(
             title,
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Colors.black,
             ),
           ),
         ],
