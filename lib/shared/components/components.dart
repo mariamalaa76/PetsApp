@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -97,6 +99,56 @@ Widget PetItem (
 
     ],
   );
+
+Widget PetItem2({
+  required String path,
+  required String name,
+  required VoidCallback onAddToCart,
+}) =>
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: onAddToCart,
+          child: Container(
+            height: 150.0,
+            width: 150.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  offset: Offset(0, 4),
+                  blurRadius: 6.0,
+                ),
+              ],
+              border: Border.all(
+                color: HexColor('#F0D0B8'),
+                width: 2.0,
+              ),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15.0),
+              child: path.isNotEmpty
+                  ? Image.file(File(path), fit: BoxFit.cover)
+                  : Icon(Icons.image, size: 50.0, color: Colors.grey),
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          name,
+          style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+        ),
+        ElevatedButton(
+          onPressed: onAddToCart,
+          child: Text('Add to Cart'),
+        ),
+      ],
+    );
+
 
 Widget EVPITEM(
     {

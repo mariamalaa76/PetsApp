@@ -1,37 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'layout/home_layout/home.dart';
-import 'modules/adopt_pet/adopt_pet.dart';
-import 'modules/category/category.dart';
-import 'modules/login/login.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pets_app/layout/cubit/cubit.dart';
+import 'package:pets_app/modules/login/login.dart';
 
- void main() {
-  runApp(const MyApp());
+import 'modules/cart/cart.dart';
+
+void main() {
+  runApp(
+    BlocProvider(
+      create: (context) => PetsCubit()..loadPets(),
+      child: MyApp(),
+    ),
+  );
 }
-//mostafa
+
 class MyApp extends StatelessWidget {
-
-
-
-  const MyApp({super.key});
   @override
-
-
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home:LoginScreen(),
+      title: 'Pets App',
       theme: ThemeData(
-        scaffoldBackgroundColor: HexColor('#E8C0A0'),
-        appBarTheme: AppBarTheme(
-          color: HexColor('#E8C0A0'),
-        ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: HexColor('#E8C0A0'),
-          elevation: 0,
-          selectedItemColor: HexColor('#670b0b'),
-        )
+        primarySwatch: Colors.orange,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      home: LoginScreen(),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:pets_app/layout/home_layout/home.dart';
 import 'package:pets_app/modules/register/register.dart';
 import 'package:pets_app/shared/components/components.dart';
@@ -18,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: HexColor('#F0D0B8'),
       body: Form(
         key: formKey,
         child: Center(

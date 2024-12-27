@@ -4,7 +4,6 @@ import 'package:pets_app/modules/cart/cart.dart';
 import 'package:pets_app/modules/profile/profile.dart';
 import '../../modules/adopt_pet/adopt_pet.dart';
 import '../../modules/category/category.dart';
-import '../../modules/products/product.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -53,5 +52,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
