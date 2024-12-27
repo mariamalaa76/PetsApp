@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pets_app/modules/cart/cart.dart';
 import 'package:pets_app/modules/profile/profile.dart';
-import '../../modules/adopt_pet/adopt_pet.dart';
 import '../../modules/category/category.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> screens = [
     CategoriesScreen(),
     CartScreen(),
-    ProfileScreen(),
+    UserProfileScreen(),
   ];
 
   @override
